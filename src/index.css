@@ -6,7 +6,7 @@
 
   --color-card: #141a1f;
 
-  --color-primary: #20b2a6;
+  --color-primary: #E53935;
   --color-primary-foreground: #ffffff;
 
   --color-secondary: #1f2830;
@@ -45,6 +45,25 @@
     background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
     background-filter: blur(16px);
   }
+
+  .glass-strong {
+    background-color: color-mix(in srgb,
+        var(--color-surface) 80%,
+        transparent);
+
+    backdrop-filter: blur(24px);
+
+    border: 1px solid color-mix(in srgb,
+        var(--color-border) 60%,
+        transparent);
+  }
+
+  .glow-text {
+    text-shadow:
+      0 0 30px color-mix(in srgb,
+        var(--color-primary) 50%,
+        transparent);
+  }
 }
 
 @layer utilities {
@@ -59,6 +78,32 @@
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
+    }
+  }
+
+  @keyframes floating {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    20% {
+      transform: translate3d(25px, -20px, 0) scale(1.2);
+    }
+
+    40% {
+      transform: translate3d(-20px, 15px, 0) scale(0.9);
+    }
+
+    60% {
+      transform: translate3d(18px, 28px, 0) scale(1.1);
+    }
+
+    80% {
+      transform: translate3d(-15px, -18px, 0) scale(0.95);
+    }
+
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
     }
   }
 
