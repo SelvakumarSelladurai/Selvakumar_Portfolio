@@ -4,7 +4,8 @@ import Contact from "./sections/Contact"
 import Experience from "./sections/Experience"
 import Hero from "./sections/Hero"
 import Project from "./sections/Project"
-import Testimonials from "./sections/Testimonials"
+import TechStack from "./sections/TechStack"
+import Footer from "./layout/Footer"
 
 const App = () => {
   return (
@@ -15,9 +16,10 @@ const App = () => {
         <About />
         <Project />
         <Experience />
-        <Testimonials />
+        <TechStack />
         <Contact />
       </main>
+      <Footer />
     </div>
   )
 }
