@@ -7,8 +7,8 @@ const navLinks = [
     { href: "#about", label: "About" },
     { href: "#projects", label: "Project" },
     { href: "#experience", label: "Experience" },
-    { href: "#testimonials", label: "Testimonials" },
-]
+    { href: "#techstack", label: "Tech Stack" },
+];
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -32,8 +32,13 @@ const Navbar = () => {
                         </a>
                     ))}
                 </div>
-                <div className="hidden md:block">
-                    <Button size="sm">Contact Me</Button>
+                <div
+                    href="#contact"
+                    className="hidden md:block"
+                >
+                    <Button>
+                        Contact Me
+                    </Button>
                 </div>
 
                 {/*Mobile Menu Button*/}
