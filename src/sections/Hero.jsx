@@ -9,7 +9,7 @@ import {
     FaGithub,
     FaLinkedin,
     FaTwitter,
-    FaArrowRight,
+    FaArrowRight, ...
     FaDownload,
 } from "react-icons/fa";
 
