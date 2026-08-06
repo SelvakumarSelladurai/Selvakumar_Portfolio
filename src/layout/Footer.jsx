@@ -3,7 +3,7 @@ import {
     FaLinkedin,
     FaInstagram,
 } from "react-icons/fa";
-
+..
 const socialLinks = [
     {
         name: "GitHub",

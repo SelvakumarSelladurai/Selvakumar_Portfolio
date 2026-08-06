@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "../components/Button"
 import { IoMdMenu } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
-
+..
 const navLinks = [
     { href: "#about", label: "About" },
     { href: "#projects", label: "Project" },
