@@ -1,27 +1,3 @@
-import {
-    FaGithub,
-    FaLinkedin,
-    FaInstagram,
-} from "react-icons/fa";
-
-const socialLinks = [
-    {
-        name: "GitHub",
-        icon: FaGithub,
-        href: "https://github.com/yourusername",
-    },
-    {
-        name: "LinkedIn",
-        icon: FaLinkedin,
-        href: "https://linkedin.com/in/yourusername",
-    },
-    {
-        name: "Instagram",
-        icon: FaInstagram,
-        href: "https://instagram.com/yourusername",
-    },
-];
-
 const links = [
     {
         name: "About",
@@ -36,7 +12,11 @@ const links = [
         href: "#experience",
     },
     {
-        name: "Tech Stack",
+        name: "Education",
+        href: "#education",
+    },
+    {
+        name: "Skills",
         href: "#techstack",
     },
     {
@@ -54,16 +34,13 @@ const Footer = () => {
 
                 <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
                     <div>
-                        <a
-                            href="#"
-                            className="text-3xl font-bold"
-                        >
-                            SK
+                        <a href="#home" className="text-3xl font-bold">
+                            selva
                             <span className="text-primary">.</span>
                         </a>
 
                         <p className="mt-2 text-sm text-muted-foreground">
-                            Building modern web experiences with React.
+                            Frontend developer building with React, Python, and FastAPI.
                         </p>
 
                     </div>
@@ -80,22 +57,7 @@ const Footer = () => {
                         ))}
                     </nav>
 
-                    <div className="flex items-center gap-4">
-                        {socialLinks.map((social) => {
-                            const Icon = social.icon;
-                            return (
-                                <a
-                                    key={social.name}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="rounded-full p-3 transition-all duration-300 hover:bg-primary hover:text-white"
-                                >
-                                    <Icon size={18} />
-                                </a>
-                            );
-                        })}
-                    </div>
+                    <a href="mailto:selvakumarselladurai5973@gmail.com" className="text-sm font-medium text-primary hover:underline">Email me ↗</a>
                 </div>
 
                 <div className="mt-8 border-t border-border pt-6 text-center">

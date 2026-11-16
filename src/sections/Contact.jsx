@@ -1,8 +1,5 @@
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
-
 import Button from "@/components/Button";
-
 import {
     FaEnvelope,
     FaPhoneAlt,
@@ -13,431 +10,106 @@ import {
 } from "react-icons/fa";
 
 const contactInfo = [
-    {
-        icon: FaEnvelope,
-        label: "Email",
-        value: "selvakumarselladurai5973@gmail.com",
-        href: "mailto:selvakumarselladurai5973@gmail.com",
-    },
-    {
-        icon: FaPhoneAlt,
-        label: "Phone",
-        value: "+91 7010614358",
-        href: "tel:+917010614358",
-    },
-    {
-        icon: FaMapMarkerAlt,
-        label: "Location",
-        value: "Udumalaipettai, Tamil Nadu, India",
-        href: "#",
-    },
+    { icon: FaEnvelope, label: "Email", value: "selvakumarselladurai5973@gmail.com", href: "mailto:selvakumarselladurai5973@gmail.com" },
+    { icon: FaPhoneAlt, label: "Phone", value: "+91 7010614358", href: "tel:+917010614358" },
+    { icon: FaMapMarkerAlt, label: "Location", value: "Tamil Nadu, India" },
 ];
 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        message: "",
-    });
-
+    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
     const [isLoading, setIsLoading] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({ type: null, message: "" });
 
-    const [submitStatus, setSubmitStatus] = useState({
-        type: null,
-        message: "",
-    });
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         setIsLoading(true);
-        setSubmitStatus({
-            type: null,
-            message: "",
-        });
+        setSubmitStatus({ type: null, message: "" });
 
         try {
-            const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-            const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-            if (!serviceId || !templateId || !publicKey) {
-                throw new Error("EmailJS environment variables are missing.");
-            }
-
-            await emailjs.send(
-                serviceId,
-                templateId,
-                {
-                    name: formData.name,
-                    email: formData.email,
-                    message: formData.message,
-                },
-                publicKey
-            );
-
-            setSubmitStatus({
-                type: "success",
-                message:
-                    "Message sent successfully. I'll get back to you soon!",
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
             });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.detail || "The message could not be sent. Please try again.");
 
-            setFormData({
-                name: "",
-                email: "",
-                message: "",
-            });
-        } catch (err) {
-            console.error(err);
-
-            setSubmitStatus({
-                type: "error",
-                message:
-                    err.text ||
-                    err.message ||
-                    "Failed to send message. Please try again later.",
-            });
+            setSubmitStatus({ type: "success", message: result.message });
+            setFormData({ name: "", email: "", message: "" });
+        } catch (error) {
+            setSubmitStatus({ type: "error", message: error.message || "Unable to reach the server. Please try again later." });
         } finally {
             setIsLoading(false);
         }
     };
 
+    const updateField = (field) => (event) => setFormData((current) => ({ ...current, [field]: event.target.value }));
+    const inputClass = "min-h-12 w-full min-w-0 rounded-xl border border-border bg-surface px-4 py-3 text-base text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-muted-foreground/70";
+
     return (
-        <section
-            id="contact"
-            className="relative overflow-hidden py-8"
-        >
-
-            <div className="absolute inset-0">
-                <div className=" absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
-
-                <div className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-highlight/10 blur-3xl" />
+        <section id="contact" className="relative scroll-mt-24 overflow-hidden py-20 sm:py-28">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+                <div className="absolute left-1/4 top-1/4 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
+                <div className="absolute bottom-1/4 right-1/4 h-72 w-72 rounded-full bg-highlight/5 blur-3xl" />
             </div>
 
-            <div className="container relative z-10 mx-auto px-6">
-                <div className="mx-auto mb-20 max-w-3xl text-center">
-
-                    <span className="animate-fade-in text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-                        Contact
-                    </span>
-
-                    <h2 className="animate-fade-in animation-delay-100 mt-6 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-                        Let's build
-                        <span className="font-serif font-normal italic text-white">
-                            {" "}something amazing.
-                        </span>
-                    </h2>
-
-                    <p className="animate-fade-in animation-delay-200 mt-6 text-lg leading-8 text-muted-foreground">
-                        Have an idea, project, or opportunity you'd like to discuss?
-                        I'd love to hear from you. Feel free to send me a message,
-                        and let's create something meaningful together.
+            <div className="container relative z-10 mx-auto px-4 sm:px-6">
+                <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
+                    <span className="eyebrow">Contact · 05</span>
+                    <h2 className="section-title mt-5">Let’s make <span className="accent-text">something useful.</span></h2>
+                    <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-muted-foreground sm:text-base sm:leading-7">
+                        Have a project, opportunity, or question? Send me a message and I’ll get back to you.
                     </p>
                 </div>
 
-                <div className="grid gap-12 lg:grid-cols-2">
-                    <div className="glass rounded-3xl border border-primary/20 p-8 animate-fade-in animation-delay-300">
-                        <form
-                            onSubmit={handleSubmit}
-                            className="space-y-6"
-                        >
+                <div className="mx-auto grid max-w-5xl gap-5 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+                    <div className="glass min-w-0 rounded-3xl border border-border p-5 sm:p-8">
+                        <form onSubmit={handleSubmit} className="space-y-5">
                             <div>
-                                <label htmlFor="name" className="mb-2 block text-sm font-medium">
-                                    Full Name
-                                </label>
-
-                                <input
-                                    id="name"
-                                    type="text"
-                                    required
-                                    placeholder="Enter your name"
-                                    value={formData.name}
-                                    onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
-                                            name: e.target.value,
-                                        })
-                                    }
-                                    className="w-full rounded-xl border border-border bg-surface px-5 py-3 outline-none transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
-                                />
-
+                                <label htmlFor="name" className="mb-2 block text-sm font-medium">Full name</label>
+                                <input id="name" name="name" type="text" autoComplete="name" required minLength={2} maxLength={100} placeholder="Enter your name" value={formData.name} onChange={updateField("name")} className={inputClass} />
                             </div>
                             <div>
-
-                                <label
-                                    htmlFor="email"
-                                    className="mb-2 block text-sm font-medium"
-                                >
-                                    Email Address
-                                </label>
-
-                                <input
-                                    id="email"
-                                    type="email"
-                                    required
-                                    placeholder="your@email.com"
-                                    value={formData.email}
-                                    onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
-                                            email: e.target.value,
-                                        })
-                                    }
-                                    className="
-                                        w-full
-                                        rounded-xl
-                                        border
-                                        border-border
-                                        bg-surface
-                                        px-5
-                                        py-3
-                                        outline-none
-                                        transition-all
-                                        duration-300
-                                        focus:border-primary
-                                        focus:ring-2
-                                        focus:ring-primary/20
-                                    "
-                                />
-
+                                <label htmlFor="email" className="mb-2 block text-sm font-medium">Email address</label>
+                                <input id="email" name="email" type="email" autoComplete="email" required maxLength={254} placeholder="you@email.com" value={formData.email} onChange={updateField("email")} className={inputClass} />
                             </div>
-
-                            {/* Message */}
-
                             <div>
-
-                                <label
-                                    htmlFor="message"
-                                    className="mb-2 block text-sm font-medium"
-                                >
-                                    Message
-                                </label>
-
-                                <textarea
-                                    id="message"
-                                    rows={6}
-                                    required
-                                    placeholder="Tell me about your project..."
-                                    value={formData.message}
-                                    onChange={(e) =>
-                                        setFormData({
-                                            ...formData,
-                                            message: e.target.value,
-                                        })
-                                    }
-                                    className="
-                                        w-full
-                                        resize-none
-                                        rounded-xl
-                                        border
-                                        border-border
-                                        bg-surface
-                                        px-5
-                                        py-3
-                                        outline-none
-                                        transition-all
-                                        duration-300
-                                        focus:border-primary
-                                        focus:ring-2
-                                        focus:ring-primary/20
-                                    "
-                                />
-
+                                <label htmlFor="message" className="mb-2 block text-sm font-medium">Message</label>
+                                <textarea id="message" name="message" rows={5} required minLength={10} maxLength={5000} placeholder="Tell me about your project..." value={formData.message} onChange={updateField("message")} className={`${inputClass} min-h-36 resize-y`} />
                             </div>
 
-                            {/* Submit Button */}
-
-                            <Button
-                                type="submit"
-                                size="lg"
-                                disabled={isLoading}
-                                className="w-full"
-                            >
-                                {isLoading ? (
-                                    <>
-                                        Sending...
-                                    </>
-                                ) : (
-                                    <>
-                                        Send Message
-                                        <FaPaperPlane className="text-sm" />
-                                    </>
-                                )}
+                            <Button type="submit" size="lg" disabled={isLoading} className="min-h-14 w-full disabled:cursor-not-allowed disabled:opacity-65">
+                                {isLoading ? "Sending…" : "Send Message"}
+                                {!isLoading && <FaPaperPlane aria-hidden="true" className="text-sm" />}
                             </Button>
 
-                            {/* Success / Error */}
-
                             {submitStatus.type && (
-
-                                <div
-                                    className={`
-                                        flex
-                                        items-center
-                                        gap-3
-                                        rounded-xl
-                                        border
-                                        p-4
-                                        ${submitStatus.type === "success"
-                                            ? "border-green-500/30 bg-green-500/10 text-green-400"
-                                            : "border-red-500/30 bg-red-500/10 text-red-400"
-                                        }
-                                    `}
-                                >
-
-                                    {submitStatus.type === "success" ? (
-                                        <FaCheckCircle size={20} />
-                                    ) : (
-                                        <FaExclamationCircle size={20} />
-                                    )}
-
-                                    <p className="text-sm">
-                                        {submitStatus.message}
-                                    </p>
-
+                                <div role="status" aria-live="polite" className={`flex items-start gap-3 rounded-xl border p-4 ${submitStatus.type === "success" ? "border-green-500/30 bg-green-500/10 text-green-300" : "border-red-500/30 bg-red-500/10 text-red-300"}`}>
+                                    {submitStatus.type === "success" ? <FaCheckCircle aria-hidden="true" className="mt-0.5 shrink-0" /> : <FaExclamationCircle aria-hidden="true" className="mt-0.5 shrink-0" />}
+                                    <p className="break-words text-sm">{submitStatus.message}</p>
                                 </div>
-
                             )}
-
                         </form>
-
                     </div>
 
-                    {/* Contact Information */}
-
-                    <div className="space-y-6 animate-fade-in animation-delay-400">
-
-                        <div className="glass rounded-3xl p-8">
-
-                            <h3 className="mb-8 text-2xl font-semibold">
-                                Contact Information
-                            </h3>
-
-                            <div className="space-y-5">
-
-                                {contactInfo.map((item) => {
-
-                                    const Icon = item.icon;
-
-                                    return (
-
-                                        <a
-                                            key={item.label}
-                                            href={item.href}
-                                            className="
-                                                group
-                                                flex
-                                                items-center
-                                                gap-5
-                                                rounded-2xl
-                                                p-4
-                                                transition-all
-                                                duration-300
-                                                hover:bg-primary/5
-                                            "
-                                        >
-
-                                            <div
-                                                className="
-                                                    flex
-                                                    h-14
-                                                    w-14
-                                                    items-center
-                                                    justify-center
-                                                    rounded-2xl
-                                                    bg-primary/10
-                                                    text-primary
-                                                    transition-all
-                                                    duration-300
-                                                    group-hover:scale-110
-                                                    group-hover:bg-primary
-                                                    group-hover:text-white
-                                                "
-                                            >
-                                                <Icon size={22} />
-                                            </div>
-
-                                            <div>
-
-                                                <p className="text-sm text-muted-foreground">
-                                                    {item.label}
-                                                </p>
-
-                                                <p className="font-medium">
-                                                    {item.value}
-                                                </p>
-
-                                            </div>
-
-                                        </a>
-
-                                    );
-
-                                })}
-
-                            </div>
-
+                    <aside className="glass min-w-0 rounded-3xl border border-border p-5 sm:p-8">
+                        <span className="eyebrow">Get in touch</span>
+                        <h3 className="mt-5 text-2xl font-semibold tracking-tight">I’m easy to reach.</h3>
+                        <p className="mt-3 text-sm leading-6 text-muted-foreground">The contact form sends your message through my FastAPI backend. You can also reach me directly here.</p>
+                        <div className="mt-7 space-y-3">
+                            {contactInfo.map(({ icon: Icon, label, value, href }) => (
+                                <div key={label} className="flex min-w-0 items-start gap-3 rounded-2xl border border-border/80 bg-background/40 p-4">
+                                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary"><Icon aria-hidden="true" size={16} /></span>
+                                    <div className="min-w-0">
+                                        <p className="text-xs uppercase tracking-wider text-muted-foreground">{label}</p>
+                                        {href ? <a href={href} className="mt-1 block break-all text-sm font-medium hover:text-primary">{value}</a> : <p className="mt-1 break-words text-sm font-medium">{value}</p>}
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-
-                        {/* Availability */}
-
-                        <div className="glass glow-border rounded-3xl border border-primary/20 p-8">
-
-                            <div className="mb-4 flex items-center gap-3">
-
-                                <span className="h-3 w-3 rounded-full bg-green-500 animate-pulse" />
-
-                                <h3 className="text-lg font-semibold">
-                                    Available for Work
-                                </h3>
-
-                            </div>
-
-                            <p className="leading-7 text-muted-foreground">
-                                I'm currently open to full-time opportunities,
-                                freelance projects, and collaborations.
-                                If you're looking for a passionate React /
-                                MERN Stack Developer, I'd be happy to discuss
-                                how I can contribute to your team.
-                            </p>
-
-                        </div>
-
-                        {/* Quick Stats */}
-
-                        <div className="grid grid-cols-2 gap-5">
-
-                            <div className="glass rounded-2xl p-6 text-center">
-
-                                <h4 className="text-3xl font-bold text-primary">
-                                    24h
-                                </h4>
-
-                                <p className="mt-2 text-sm text-muted-foreground">
-                                    Average Response
-                                </p>
-
-                            </div>
-
-                            <div className="glass rounded-2xl p-6 text-center">
-
-                                <h4 className="text-3xl font-bold text-primary">
-                                    100%
-                                </h4>
-
-                                <p className="mt-2 text-sm text-muted-foreground">
-                                    Commitment
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                    </aside>
                 </div>
-
             </div>
-
         </section>
     );
 };
