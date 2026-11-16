@@ -1,224 +1,84 @@
-const experiences = [
+const roles = [
     {
-        id: 1,
-        period: "Aug 2025 — Present",
-        role: "Software Developer",
-        company: "Current Organization",
-        description:
-            "Developing scalable web applications using React.js, JavaScript, Tailwind CSS, and modern frontend technologies. Building reusable components, integrating REST APIs, optimizing application performance, and collaborating with cross-functional teams to deliver production-ready solutions.",
-        technologies: [
-            "React",
-            "JavaScript",
-            "Tailwind CSS",
-            "REST API",
-            "Git",
-            "Frappe",
+        type: "Professional experience",
+        period: "Jul 2025 — Present",
+        role: "Frontend Developer · Software Development",
+        company: "Blue Fire Xperts Info Tech",
+        location: "Tiruchirappalli, Tamil Nadu",
+        description: [
+            "Develop and customize responsive web interfaces using React.js, JavaScript, HTML5, CSS3, and Tailwind CSS.",
+            "Work with Frappe Framework and ERPNext on application customization, client/server scripting, and business workflows.",
+            "Contribute to healthcare, manufacturing, CRM, and enterprise software projects, delivering solutions for real-world requirements.",
+            "Use Git, GitHub, Docker, Podman, REST APIs, Python, MariaDB, and PostgreSQL across development and deployment workflows.",
         ],
+        skills: ["React.js", "Frappe", "ERPNext", "Python", "REST APIs", "Docker", "Podman", "MariaDB", "PostgreSQL"],
         current: true,
     },
-
     {
-        id: 2,
-        period: "2025",
-        role: "Frontend Developer",
-        company: "Professional Experience",
-        description:
-            "Worked on responsive web applications, implemented reusable UI components, integrated backend services, fixed production issues, and improved overall user experience while following clean coding practices.",
-        technologies: [
-            "React",
-            "JavaScript",
-            "HTML5",
-            "CSS3",
-            "Bootstrap",
-            "Git",
-        ],
-        current: false,
+        type: "Internship",
+        period: "Nov — Dec 2024",
+        role: "Django in Python Intern",
+        company: "Prime Solution",
+        description: ["Learned Django fundamentals and gained practical exposure to building basic web applications with Python and Django."],
+        skills: ["Python", "Django"],
     },
-
     {
-        id: 3,
-        period: "2025",
-        role: "Full Stack Project Developer",
-        company: "Personal Projects",
-        description:
-            "Designed and developed multiple full-stack applications including an AI-powered document automation platform, dynamic checklist builder, and responsive portfolio website while focusing on scalability and maintainability.",
-        technologies: [
-            "React",
-            "Node.js",
-            "Express",
-            "MongoDB",
-            "Tailwind CSS",
-            "Zustand",
-        ],
-        current: false,
+        type: "Internship",
+        period: "May — Jun 2023",
+        role: "Full Stack Web Development Intern",
+        company: "Unified Mentor Pvt. Ltd.",
+        description: ["Learned HTML5, CSS3, JavaScript, and React.js for frontend development, with basic exposure to Node.js for backend development."],
+        skills: ["HTML5", "CSS3", "JavaScript", "React.js", "Node.js"],
     },
-
     {
-        id: 4,
-        period: "2024 — Present",
-        role: "Continuous Learning",
-        company: "Professional Development",
-        description:
-            "Continuously improving problem-solving skills through Data Structures & Algorithms, learning advanced React patterns, testing frameworks, backend development, AI integration, and modern software engineering practices.",
-        technologies: [
-            "DSA",
-            "React",
-            "Node.js",
-            "Jest",
-            "Playwright",
-            "AI",
-        ],
-        current: false,
+        type: "Internship",
+        period: "Jun — Jul 2022",
+        role: "Python Programming Intern",
+        company: "R2C Technologies",
+        description: ["Learned Python fundamentals, including variables, data types, control flow, functions, and basic problem-solving concepts."],
+        skills: ["Python", "Programming fundamentals"],
     },
 ];
 
-const Experience = () => {
-    return (
-        <section
-            id="experience"
-            className="relative overflow-hidden py-16"
-        >
-            <div className="absolute left-1 /4 top - 1 / 2 h - 96 w - 96 - translate - y - 1 / 2 rounded - full bg - primary / 5 blur - 3xl" />
-            < div className="container relative z-10 mx-auto px-6" >
-                <div className="mb-20 max-w-3xl">
-                    <span className="animate-fade-in text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-                        Professional Journey
-                    </span>
+const Experience = () => (
+    <section id="experience" className="relative scroll-mt-28 overflow-hidden pt-6 pb-20 sm:pt-8 sm:pb-28">
+        <div className="container relative z-10 mx-auto px-6">
+            <div className="mb-12 max-w-3xl">
+                <span className="eyebrow">Career · 02</span>
+                <h2 className="section-title mt-5">Experience that <span className="accent-text">moves work forward.</span></h2>
+                <p className="mt-5 text-base leading-7 text-muted-foreground">Professional experience and internships across frontend development, enterprise software, and Python.</p>
+            </div>
 
-                    <h2 className="animate-fade-in animation-delay-100 mt-6 text-4xl font-bold md:text-5xl lg:text-6xl">
-                        Experience that
-                        <span className="font-serif font-normal italic text-white">
-                            {" "}builds expertise.
-                        </span>
-                    </h2>
-
-                    <p className="animate-fade-in animation-delay-200 mt-6 text-lg leading-8 text-muted-foreground">
-                        My journey as a software developer, building modern web
-                        applications, solving real-world problems, and
-                        continuously improving through professional experience,
-                        personal projects, and constant learning.
-                    </p>
-                </div>
-
-                <div className="relative">
-
-                    <div className="timeline-glow absolute left-0 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary via-primary/40 to-transparent md:left-1/2 md:-translate-x-1/2" />
-                    <div className="space-y-14">
-                        {experiences.map((exp, index) => (
-                            <div
-                                key={exp.id}
-                                className="relative grid gap-10 md:grid-cols-2 animate-fade-in"
-                                style={{
-                                    animationDelay: `${(index + 1) * 150}ms`,
-                                }}
-                            >
-
-                                <div
-                                    className="absolute left-0 top-6 h-4 w-4 -translate-x-1/2 rounded-full bg-primary ring-4 ring-background md:left-1/2"
-                                >
-                                    {exp.current && (
-                                        <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
-                                    )}
-                                </div>
-
-                                <div
-                                    className={`pl-8 md:pl-0
-                                        ${index % 2 === 0
-                                            ? "md:pr-20 md:text-right"
-                                            : "md:col-start-2 md:pl-20"
-                                        }
-                                    `}
-                                >
-                                    <div className="glass group rounded-3xl border border-primary/20 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary/40 hover:shadow-2xl">
-
-                                        <span className="text-sm font-semibold uppercase tracking-widest text-primary">
-                                            {exp.period}
-                                        </span>
-
-                                        <h3 className="mt-3 text-2xl font-bold">
-                                            {exp.role}
-                                        </h3>
-
-                                        <p className="mt-2 text-lg text-muted-foreground">
-                                            {exp.company}
-                                        </p>
-
-                                        {exp.current && (
-                                            <span className="mt-4 inline-flex rounded-full bg-primary/10 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-primary">
-                                                Current Position
-                                            </span>
-
-                                        )}
-                                        <p className="mt-6 leading-8 text-muted-foreground">
-                                            {exp.description}
-                                        </p>
-
-                                        <div className={`mt-8 flex flex-wrap gap-3
-                                                ${index % 2 === 0
-                                                ? "md:justify-end"
-                                                : ""
-                                            }
-                                            `}
-                                        >
-                                            {exp.technologies.map((tech) => (
-                                                <span key={tech}
-                                                    className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-all duration-300 hover:bg-primary hover:text-white"
-                                                >
-                                                    {tech}
-                                                </span>
-                                            ))}
-                                        </div>
+            <div className="relative space-y-5">
+                {roles.map((item) => (
+                    <article key={`${item.company}-${item.period}`} className="glass rounded-3xl border border-border p-5 transition-colors hover:border-primary/30 sm:p-8">
+                        <div className="grid gap-5 md:grid-cols-[180px_1fr] md:gap-8">
+                            <div>
+                                <span className="inline-flex rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-primary">{item.type}</span>
+                                <p className="mt-3 text-sm font-medium text-muted-foreground">{item.period}</p>
+                            </div>
+                            <div>
+                                <div className="flex flex-wrap items-start justify-between gap-2">
+                                    <div>
+                                        <h3 className="text-xl font-semibold tracking-tight sm:text-2xl">{item.role}</h3>
+                                        <p className="mt-1 text-base text-primary">{item.company}</p>
                                     </div>
+                                    {item.current && <span className="rounded-full border border-primary/25 px-3 py-1 text-xs text-primary">Current role</span>}
+                                </div>
+                                {item.location && <p className="mt-2 text-sm text-muted-foreground">{item.location}</p>}
+                                <ul className="mt-5 space-y-2.5 text-sm leading-6 text-muted-foreground sm:text-base">
+                                    {item.description.map((line) => <li key={line} className="flex gap-3"><span aria-hidden="true" className="mt-[0.65rem] h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />{line}</li>)}
+                                </ul>
+                                <div className="mt-5 flex flex-wrap gap-2">
+                                    {item.skills.map((skill) => <span key={skill} className="rounded-full border border-border px-3 py-1.5 text-xs text-muted-foreground">{skill}</span>)}
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="mt-24 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                    <div className="glass rounded-3xl p-8 text-center">
-                        <h3 className="text-4xl font-bold text-primary">
-                            1+
-                        </h3>
-
-                        <p className="mt-3 text-muted-foreground">
-                            Years Experience
-                        </p>
-                    </div>
-
-                    <div className="glass rounded-3xl p-8 text-center">
-                        <h3 className="text-4xl font-bold text-primary">
-                            20+
-                        </h3>
-
-                        <p className="mt-3 text-muted-foreground">
-                            Projects Completed
-                        </p>
-                    </div>
-
-                    <div className="glass rounded-3xl p-8 text-center">
-                        <h3 className="text-4xl font-bold text-primary">
-                            15+
-                        </h3>
-
-                        <p className="mt-3 text-muted-foreground">
-                            Technologies
-                        </p>
-                    </div>
-
-                    <div className="glass rounded-3xl p-8 text-center">
-                        <h3 className="text-4xl font-bold text-primary">
-                            100%
-                        </h3>
-
-                        <p className="mt-3 text-muted-foreground">
-                            Passion for Learning
-                        </p>
-                    </div>
-                </div>
-            </div >
-        </section >
-    );
-};
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+);
 
 export default Experience;

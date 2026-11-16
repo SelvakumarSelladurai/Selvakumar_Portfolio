@@ -1,174 +1,90 @@
-import {
-    FaArrowUpRightFromSquare,
-    FaGithub,
-} from "react-icons/fa6";
-
-import AnimatedBorderButton from "@/components/AnimatedBorderButton";
+import { FaArrowUpRightFromSquare, FaGithub } from "react-icons/fa6";
 
 const projects = [
     {
-        title: "Doc2Form AI",
-        description:
-            "An AI-powered platform that converts PDFs, scanned documents, and images into editable digital forms using intelligent document processing and automation.",
-        image: "/projects/doc2form-ai.png",
-        tags: [
-            "React",
-            "Node.js",
-            "Express",
-            "MongoDB",
-            "Tailwind CSS",
-            "OpenAI",
-        ],
-        link: "#",
-        github: "#",
+        title: "Campus360",
+        category: "College ERP",
+        status: "Planned · starter foundation ready",
+        description: "A planned college ERP for managing student records, attendance, fees, exams, and placements, with dedicated student and parent portals.",
+        details: "Redis and Celery are planned. The project license is still to be decided.",
+        mark: "C360",
+        accent: "#c6f36b",
+        github: "https://github.com/SelvakumarSelladurai/Campus360",
+        githubLabel: "View Campus360 on GitHub",
+        tags: ["React 19", "TypeScript", "Vite", "Tailwind CSS 4", "FastAPI", "Python 3.12", "SQLAlchemy 2", "Pydantic 2", "PostgreSQL 16", "Redis · planned", "Celery · planned"],
     },
     {
-        title: "Checklist Builder",
-        description:
-            "A drag-and-drop checklist builder with reusable components, conditional logic, mobile preview, schema validation, and dynamic form generation.",
-        image: "/projects/checklist-builder.png",
-        tags: [
-            "React",
-            "JavaScript",
-            "Zustand",
-            "Tailwind CSS",
-            "React DnD",
-        ],
-        link: "#",
-        github: "#",
+        title: "CodeNest",
+        category: "Learning platform",
+        status: "Structured learning journey",
+        description: "A guided path from web development fundamentals to advanced full-stack skills, organized into clear stages and topics.",
+        details: "Learners track progress, get recommendations for what to study next, and build practical skills through lessons, hands-on practice, and revision.",
+        mark: "CN",
+        accent: "#82d9ca",
+        github: "https://github.com/SelvakumarSelladurai/CodeNest",
+        githubLabel: "View CodeNest on GitHub",
+        tags: ["Learning roadmap", "Progress tracking", "Next-step recommendations", "Lessons", "Hands-on practice", "Revision"],
     },
     {
-        title: "Developer Portfolio",
-        description:
-            "A modern developer portfolio featuring glassmorphism UI, smooth animations, responsive layouts, EmailJS contact form, and reusable React components.",
-        image: "/projects/portfolio.png",
-        tags: [
-            "React",
-            "Tailwind CSS",
-            "EmailJS",
-            "React Icons",
-            "Vite",
-        ],
-        link: "#",
-        github: "#",
-    },
-    {
-        title: "MERN Task Manager",
-        description:
-            "A full-stack task management application with JWT authentication, dashboards, CRUD operations, role-based access, and REST APIs.",
-        image: "/projects/task-manager.png",
-        tags: [
-            "React",
-            "Node.js",
-            "Express",
-            "MongoDB",
-            "JWT",
-        ],
-        link: "#",
-        github: "#",
+        title: "WorkPro360",
+        category: "Employee management system",
+        status: "Workforce operations",
+        description: "A modern React.js employee management system that brings workforce operations and employee information into one centralized workspace.",
+        details: "Designed to help organizations manage employee records, attendance, leave, payroll, and employee lifecycle information in a simple, secure way.",
+        mark: "W360",
+        accent: "#98b7ff",
+        github: "https://github.com/SelvakumarSelladurai/",
+        githubLabel: "View Selvakumar’s GitHub profile",
+        tags: ["React.js", "Employee records", "Attendance", "Leave", "Payroll", "Workforce management"],
     },
 ];
 
-const Projects = () => {
-    return (
-        <section
-            id="projects"
-            className="relative overflow-hidden py-24"
-        >
-            <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
-            <div className="absolute bottom-1/4 left-0 h-72 w-72 rounded-full bg-highlight/5 blur-3xl" />
+const Projects = () => (
+    <section id="projects" className="relative scroll-mt-28 overflow-hidden pt-20 pb-8 sm:pt-28 sm:pb-10">
+        <div aria-hidden="true" className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
+        <div aria-hidden="true" className="absolute bottom-1/4 left-0 h-72 w-72 rounded-full bg-highlight/5 blur-3xl" />
 
-            <div className="container relative z-10 mx-auto px-6">
-                <div className="mx-auto mb-20 max-w-3xl text-center">
-                    <span className="animate-fade-in text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-                        Featured Projects
-                    </span>
-
-                    <h2 className="animate-fade-in animation-delay-100 mt-6 text-4xl font-bold md:text-5xl lg:text-6xl">
-                        Projects that
-                        <span className="font-serif font-normal italic text-white">
-                            {" "}create impact.
-                        </span>
-                    </h2>
-                    <p className="animate-fade-in animation-delay-200 mt-6 text-lg leading-8 text-muted-foreground">
-                        A collection of projects showcasing my expertise in React,
-                        JavaScript, MERN Stack, AI integration, and modern web development.
-                    </p>
+        <div className="container relative z-10 mx-auto px-6">
+            <div className="mb-12 grid gap-6 md:grid-cols-[1fr_0.7fr] md:items-end">
+                <div>
+                    <span className="eyebrow">Selected work · 01</span>
+                    <h2 className="section-title mt-5">Projects built around <span className="accent-text">real needs.</span></h2>
                 </div>
-
-                <div className="grid gap-8 md:grid-cols-2">
-                    {projects.map((project, index) => (
-                        <div
-                            key={project.title}
-                            className="glass group overflow-hidden rounded-3xl border border-border transition-all duration-500 hover:-translate-y-3 hover:border-primary/40 hover:shadow-2xl animate-fade-in"
-                            style={{
-                                animationDelay: `${(index + 1) * 150}ms`,
-                            }}
-                        >
-
-                            <div className="relative aspect-video overflow-hidden">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-linear-to-t from-background via-background/30 to-transparent" />
-
-                                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 transition-all duration-300 group-hover:opacity-100">
-
-                                    <a
-                                        href={project.link}
-                                        className="glass rounded-full p-4 transition-all duration-300 hover:bg-primary hover:text-white"
-                                    >
-                                        <FaArrowUpRightFromSquare size={18} />
-                                    </a>
-
-                                    <a
-                                        href={project.github}
-                                        className="glass rounded-full p-4 transition-all duration-300 hover:bg-primary hover:text-white"
-                                    >
-                                        <FaGithub size={18} />
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="space-y-5 p-7">
-                                <div className="flex items-start justify-between">
-                                    <h3 className="text-2xl font-bold transition-colors group-hover:text-primary">
-                                        {project.title}
-                                    </h3>
-                                    <FaArrowUpRightFromSquare className="transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
-                                </div>
-
-                                <p className="leading-7 text-muted-foreground">
-                                    {project.description}
-                                </p>
-
-                                <div className="flex flex-wrap gap-3">
-                                    {project.tags.map((tag) => (
-                                        <span
-                                            key={tag}
-                                            className="rounded-full border border-border bg-surface px-4 py-2 text-xs font-medium text-muted-foreground transition-all duration-300 hover:border-primary hover:text-primary"
-                                        >
-                                            {tag}
-                                        </span>
-
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="mt-16 flex justify-center">
-                    <AnimatedBorderButton>
-                        View All Projects
-                        <FaArrowUpRightFromSquare />
-                    </AnimatedBorderButton>
-                </div>
+                <p className="max-w-lg text-base leading-7 text-muted-foreground md:justify-self-end">
+                    Products and ideas focused on education, workforce management, and useful software foundations.
+                </p>
             </div>
-        </section>
-    );
-};
+
+            <div className="grid gap-5 xl:grid-cols-3">
+                {projects.map((project, index) => (
+                    <article key={project.title} className="glass group min-w-0 overflow-hidden rounded-3xl border border-border transition duration-300 hover:-translate-y-1 hover:border-primary/35 hover:shadow-2xl" style={{ animationDelay: `${(index + 1) * 120}ms` }}>
+                        <div className="relative flex aspect-[1.65/1] items-end overflow-hidden p-6 sm:p-8" style={{ background: `radial-gradient(ellipse at 80% 20%, ${project.accent}33, transparent 48%), linear-gradient(135deg, #202b23, #111713)` }}>
+                            <span aria-hidden="true" className="glass absolute right-6 top-6 rounded-xl border-white/10 px-3 py-2 text-sm font-bold tracking-wide text-white/75 sm:right-7 sm:top-7">{project.mark}</span>
+                            <div className="relative z-10">
+                                <p className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: project.accent }}>{project.category}</p>
+                                <h3 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{project.title}</h3>
+                                <p className="mt-2 text-sm text-white/65">{project.status}</p>
+                            </div>
+                            <a href={project.github} target="_blank" rel="noreferrer" aria-label={project.githubLabel} title={project.githubLabel} className="glass absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full transition hover:border-primary/50 hover:text-primary">
+                                <FaGithub aria-hidden="true" size={19} />
+                            </a>
+                        </div>
+
+                        <div className="flex h-full flex-col space-y-4 p-5 sm:p-7">
+                            <p className="text-sm leading-6 text-muted-foreground">{project.description}</p>
+                            <p className="text-sm leading-6 text-muted-foreground">{project.details}</p>
+                            <div className="flex flex-wrap gap-2 pt-1">
+                                {project.tags.map((tag) => <span key={tag} className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted-foreground">{tag}</span>)}
+                            </div>
+                            <a href={project.github} target="_blank" rel="noreferrer" className="mt-auto inline-flex items-center gap-2 pt-3 text-sm font-semibold text-primary hover:underline">
+                                {project.githubLabel}<FaArrowUpRightFromSquare aria-hidden="true" size={13} />
+                            </a>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+);
 
 export default Projects;

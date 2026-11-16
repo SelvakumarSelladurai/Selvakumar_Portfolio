@@ -1,71 +1,39 @@
-import { useMemo } from "react";
-
-import Button from "@/components/Button";
-import AnimatedBorderButton from "@/components/AnimatedBorderButton";
-
 import Selvakumar from "../assets/SK1.jpeg"
 
-import {
-    FaGithub,
-    FaLinkedin,
-    FaTwitter,
-    FaArrowRight,
-    FaDownload,
-} from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 import { IoChevronDown } from "react-icons/io5";
 
 const skills = [
     "React",
-    "Next.js",
     "JavaScript",
     "TypeScript",
+    "Tailwind CSS",
+    "Vite",
     "Node.js",
     "Express",
     "MongoDB",
     "MySQL",
-    "Tailwind CSS",
-    "Redux",
-    "Zustand",
-    "Docker",
+    "Frappe",
     "Git",
-    "GitHub",
-    "AWS",
-    "Jest",
-    "Playwright",
+    "Docker",
     "Figma",
+    "Postman",
+    "AI APIs",
+    "GitHub",
 ];
 
-const socialLinks = [
-    {
-        icon: FaGithub,
-        href: "https://github.com/yourusername",
-    },
-    {
-        icon: FaLinkedin,
-        href: "https://linkedin.com/in/yourusername",
-    },
-    {
-        icon: FaTwitter,
-        href: "https://twitter.com/yourusername",
-    },
-];
+const dots = Array.from({ length: 30 }, (_, id) => ({
+    id,
+    left: (id * 37) % 100,
+    top: (id * 61 + 13) % 100,
+    size: 2 + ((id * 7) % 4),
+    duration: 15 + ((id * 11) % 15),
+    delay: (id * 5) % 6,
+    opacity: 0.3 + ((id * 13) % 50) / 100,
+}));
 
 const Hero = () => {
-    const dots = useMemo(
-        () =>
-            Array.from({ length: 30 }, (_, i) => ({
-                id: i,
-                left: Math.random() * 100,
-                top: Math.random() * 100,
-                size: Math.random() * 4 + 2,
-                duration: Math.random() * 15 + 15,
-                delay: Math.random() * 6,
-                opacity: Math.random() * 0.5 + 0.3,
-            })),
-        []
-    );
-
     return (
         <section
             id="home"
@@ -112,25 +80,25 @@ const Hero = () => {
                         <div className="animate-fade-in">
                             <span className="glass inline-flex items-center gap-3 rounded-full px-5 py-2 text-sm font-medium text-primary">
                                 <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                                Software Engineer • React Specialist
+                                Software Developer · Full-stack web
                             </span>
                         </div>
 
                         <div className="space-y-6">
                             <h1 className="animate-fade-in animation-delay-100 text-2xl font-bold leading-tight md:text-4xl lg:text-5xl">
-                                Crafting{" "}
+                                Building{" "}
                                 <span className="glow-text text-primary">
-                                    digital
+                                    thoughtful
                                 </span>
 
                                 <br />
 
-                                experiences with
+                                web products with
 
                                 <br />
 
                                 <span className="font-serif font-normal italic text-white">
-                                    precision.
+                                    purpose.
                                 </span>
                             </h1>
 
@@ -139,47 +107,28 @@ const Hero = () => {
                                 <span className="font-semibold text-white">
                                     Selvakumar
                                 </span>
-                                , a Software Engineer specializing in React,
-                                JavaScript, and the MERN stack. I build modern,
-                                scalable, responsive, and high-performance web
-                                applications with exceptional user experiences.
+                                , a Software Developer focused on React and modern web
+                                technologies. I enjoy turning ideas into responsive,
+                                useful products, from polished interfaces to connected
+                                application features.
                             </p>
                         </div>
 
                         {/* CTA Buttons */}
                         <div className="animate-fade-in animation-delay-300 flex flex-wrap gap-4">
 
-                            <Button size="lg">
+                            <a href="#contact" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground shadow-lg shadow-primary/15 transition hover:-translate-y-0.5 hover:bg-primary/90">
                                 Contact Me
                                 <FaArrowRight className="text-base" />
-                            </Button>
+                            </a>
 
-                            <AnimatedBorderButton>
-                                <FaDownload className="text-base" />
-                                Download Resume
-                            </AnimatedBorderButton>
+                            <a href="#projects" className="inline-flex items-center gap-3 rounded-full border border-white/15 px-7 py-4 text-base font-medium text-foreground transition hover:border-primary/50 hover:text-primary">
+                                Explore projects
+                            </a>
 
                         </div>
 
                         {/* Social Links */}
-                        <div className="animate-fade-in animation-delay-400 flex items-center gap-4">
-
-                            <span className="text-sm text-muted-foreground">
-                                Follow me
-                            </span>
-
-                            {socialLinks.map(({ icon: Icon, href }) => (
-                                <a
-                                    key={href}
-                                    href={href}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="glass rounded-full p-3 transition-all duration-300 hover:scale-110 hover:bg-primary/10 hover:text-primary"
-                                >
-                                    <Icon size={20} />
-                                </a>
-                            ))}
-                        </div>
                     </div>
 
                     {/* Right Section */}

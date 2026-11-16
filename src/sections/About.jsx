@@ -8,27 +8,27 @@ import {
 const highlights = [
     {
         icon: FaCode,
-        title: "Clean Code",
+        title: "Frontend craft",
         description:
-            "Writing clean, reusable, and maintainable code following modern development standards and best practices.",
+            "Responsive React interfaces, reusable components, and clear user flows built with modern web tools.",
     },
     {
         icon: FaRocket,
-        title: "Performance",
+        title: "Backend foundations",
         description:
-            "Building fast, optimized, and responsive web applications focused on exceptional user experience.",
+            "Developing Python APIs with FastAPI and working with REST patterns and PostgreSQL data.",
     },
     {
         icon: FaUsers,
-        title: "Collaboration",
+        title: "Product thinking",
         description:
-            "Working effectively with teams, understanding requirements, and delivering quality software solutions.",
+            "Turning requirements into practical features for student, learning, and workforce products.",
     },
     {
         icon: FaLightbulb,
-        title: "Continuous Learning",
+        title: "AI / ML exploration",
         description:
-            "Constantly exploring new technologies and improving my skills to stay updated with modern web development.",
+            "Building my understanding of retrieval-augmented generation, large language models, and AI/ML fundamentals.",
     },
 ];
 
@@ -45,26 +45,18 @@ const About = () => {
                     <div className="space-y-8">
 
                         <div className="animate-fade-in">
-                            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-                                About Me
-                            </span>
+                            <span className="eyebrow">About me · 01</span>
                         </div>
 
                         <div className="space-y-6">
 
                             <h2 className="animate-fade-in animation-delay-100 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
 
-                                Building
-                                <span className="glow-text text-primary">
-                                    {" "}modern{" "}
-                                </span>
-
-                                web experiences
-
+                                I build useful
+                                <span className="glow-text text-primary">{" "}web products.</span>
                                 <br />
-
                                 <span className="font-serif font-normal italic text-white">
-                                    with passion.
+                                    From interface to API.
                                 </span>
 
                             </h2>
@@ -76,90 +68,36 @@ const About = () => {
                                     <span className="font-semibold text-white">
                                         Selvakumar
                                     </span>
-                                    , a Software Developer passionate about
-                                    building modern, scalable, and responsive
-                                    web applications using React, JavaScript,
-                                    Node.js, Express, and MongoDB.
+                                    , a software developer focused on thoughtful interfaces
+                                    and reliable web applications. I work with React,
+                                    JavaScript, TypeScript, and Tailwind CSS on the frontend,
+                                    and Python with FastAPI and REST APIs on the backend.
                                 </p>
 
                                 <p>
-                                    I enjoy transforming ideas into real-world
-                                    digital products by focusing on clean code,
-                                    reusable components, responsive design,
-                                    accessibility, and performance optimization.
+                                    I also work with SQL, MySQL, PostgreSQL, Git, GitHub,
+                                    Docker, and Podman. I care about responsive design,
+                                    maintainable code, and software that solves real needs.
                                 </p>
 
                                 <p>
-                                    My goal is to continuously improve as a
-                                    Full Stack Developer by learning modern
-                                    technologies, solving challenging problems,
-                                    and building applications that provide an
-                                    outstanding user experience.
+                                    My professional work includes software for healthcare,
+                                    manufacturing, and CRM. In my own projects, I explore
+                                    education and workforce products, while building my
+                                    knowledge of AI/ML, RAG, and large language models.
                                 </p>
 
                             </div>
 
                         </div>
 
-                        <div className="glass glow-border animate-fade-in animation-delay-300 rounded-3xl p-8">
-
-                            <h3 className="mb-4 text-xl font-semibold text-white">
-                                My Mission
-                            </h3>
-
-                            <p className="text-lg italic leading-8 text-muted-foreground">
-                                "I believe great software is more than writing
-                                code—it's about solving real problems, creating
-                                meaningful user experiences, and continuously
-                                improving through learning and innovation."
-                            </p>
-
-                        </div>
-
-                        {/* Stats */}
-
-                        <div className="grid grid-cols-2 gap-6 animate-fade-in animation-delay-400">
-
-                            <div className="glass rounded-2xl p-6 text-center">
-                                <h3 className="text-4xl font-bold text-primary">
-                                    1+
-                                </h3>
-
-                                <p className="mt-2 text-sm text-muted-foreground">
-                                    Years Experience
-                                </p>
+                        <div className="animate-fade-in animation-delay-300 rounded-2xl border border-primary/15 bg-primary/[0.04] p-5 sm:p-6">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">Core stack</p>
+                            <div className="mt-4 flex flex-wrap gap-2">
+                                {["React", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "REST APIs", "PostgreSQL", "Docker", "GitHub", "RAG · LLMs"].map((skill) => (
+                                    <span key={skill} className="rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs font-medium text-muted-foreground">{skill}</span>
+                                ))}
                             </div>
-
-                            <div className="glass rounded-2xl p-6 text-center">
-                                <h3 className="text-4xl font-bold text-primary">
-                                    20+
-                                </h3>
-
-                                <p className="mt-2 text-sm text-muted-foreground">
-                                    Projects Built
-                                </p>
-                            </div>
-
-                            <div className="glass rounded-2xl p-6 text-center">
-                                <h3 className="text-4xl font-bold text-primary">
-                                    15+
-                                </h3>
-
-                                <p className="mt-2 text-sm text-muted-foreground">
-                                    Technologies
-                                </p>
-                            </div>
-
-                            <div className="glass rounded-2xl p-6 text-center">
-                                <h3 className="text-4xl font-bold text-primary">
-                                    ∞
-                                </h3>
-
-                                <p className="mt-2 text-sm text-muted-foreground">
-                                    Learning Mindset
-                                </p>
-                            </div>
-
                         </div>
 
                     </div>

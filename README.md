@@ -1,16 +1,28 @@
-# React + Vite
+# Selvakumar Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Responsive React and Vite portfolio with a FastAPI contact endpoint.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Install frontend packages with `npm ci`.
+2. Create and activate a Python virtual environment, then install backend packages with `pip install -r requirements.txt`.
+3. Copy `.env.example` to `.env` and set SMTP credentials. For Gmail, use an app password.
+4. Start the API in one terminal with `uvicorn app:app --reload --port 8000`.
+5. Start the frontend in another terminal with `npm run dev`.
 
-## React Compiler
+Vite forwards `/api` requests to `http://127.0.0.1:8000`. Check the backend at `/api/health`; the contact form posts to `/api/contact`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Deploy to Vercel
 
-## Expanding the ESLint configuration
+Import this repository into Vercel. The configured build runs `npm ci && npm run build`; Vercel serves the Vite `dist` assets and runs the FastAPI app from `app.py`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Add these environment variables in Vercel Project Settings → Environment Variables:
+
+- `SMTP_HOST`
+- `SMTP_PORT` (usually `587`)
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
+- `SMTP_FROM_EMAIL`
+- `CONTACT_TO_EMAIL`
+
+Deploy after adding the variables. The contact form returns a setup message until SMTP is configured.
